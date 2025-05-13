@@ -1,3 +1,7 @@
+## 1.3.0
+* Replace deprecated ButtonBar by OverflowBar
+* Apply DatePickerTheme to the buttons
+
 ## 1.2.0
 * Add localization options
 * Update deprecated functions

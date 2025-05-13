@@ -701,9 +701,13 @@ class DurationPickerDialogState extends State<DurationPickerDialog> {
   @override
   Widget build(BuildContext context) {
     assert(debugCheckHasMediaQuery(context));
+    
     final theme = Theme.of(context);
+    final DatePickerThemeData datePickerTheme = DatePickerTheme.of(context);
+    final DatePickerThemeData defaults = DatePickerTheme.defaults(context);
     final boxDecoration =
         widget.decoration ?? BoxDecoration(color: theme.dialogBackgroundColor);
+
     final Widget picker = Padding(
       padding: const EdgeInsets.all(16.0),
       child: AspectRatio(
@@ -716,20 +720,20 @@ class DurationPickerDialogState extends State<DurationPickerDialog> {
       ),
     );
 
-    final Widget actions = ButtonBarTheme(
-      data: ButtonBarTheme.of(context),
-      child: ButtonBar(
-        children: <Widget>[
-          TextButton(
-            onPressed: _handleCancel,
-            child: Text(localizations.cancelButtonLabel),
-          ),
-          TextButton(
-            onPressed: _handleOk,
-            child: Text(localizations.okButtonLabel),
-          ),
-        ],
-      ),
+    final Widget actions = OverflowBar(
+      spacing: 8,
+      children: <Widget>[
+        TextButton(
+          style: datePickerTheme.cancelButtonStyle ?? defaults.cancelButtonStyle,
+          onPressed: _handleCancel,
+          child: Text(localizations.cancelButtonLabel),
+        ),
+        TextButton(
+          style: datePickerTheme.confirmButtonStyle ?? defaults.confirmButtonStyle,
+          onPressed: _handleOk,
+          child: Text(localizations.okButtonLabel),
+        ),
+      ],
     );
 
     final dialog = Dialog(

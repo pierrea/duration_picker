@@ -722,6 +722,7 @@ class DurationPickerDialogState extends State<DurationPickerDialog> {
 
     final Widget actions = OverflowBar(
       spacing: 8,
+      alignment: MainAxisAlignment.end,
       children: <Widget>[
         TextButton(
           style: datePickerTheme.cancelButtonStyle ?? defaults.cancelButtonStyle,
@@ -747,7 +748,10 @@ class DurationPickerDialogState extends State<DurationPickerDialog> {
                 Expanded(
                   child: picker,
                 ), // picker grows and shrinks with the available space
-                actions,
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: actions,
+                ),
               ],
             ),
           );
